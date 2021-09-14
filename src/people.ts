@@ -7,8 +7,8 @@ export interface IPerson {
 }
 export const people: IPerson[] = [
     {
-        "name": "Person 1",
-        "image": "https://thispersondoesnotexist.com/?1",
+        "name": "Hanna Davyskiba",
+        "image": "./hannadavyskiba3.JPG",
         "email": "1@test.com",
         "title": "Official title",
         "color": "84b22f"
@@ -31,4 +31,4 @@ export const people: IPerson[] = [
         "title": "Official title",
         "color": "9e3997"
     }
-];
+]

@@ -9,7 +9,11 @@
 </head>
 <body>
     <people-app></people-app>
-
+    <script>
+        document.querySelector("people-app").addEventListener("makeFavourite",(e)=>{
+            window.alert(e.detail.name + " favorited")
+        })
+    </script>
 </body>
 
 </html>

@@ -1,22 +1,25 @@
-import { LitElement, html } from 'lit-element';
-import {customElement } from 'lit/decorators';
-import { people } from '../people';
+import { LitElement, html, TemplateResult } from "lit-element"
+import {customElement } from "lit/decorators"
+import { people,IPerson } from "../people"
 
-@customElement('people-app')
+@customElement("people-app")
 class PeopleAppElement extends LitElement {
-    people = people;
+    people = people
     
-    onMakeFavourite(event) {
-        console.log('make favourite', event.detail)
+    onMakeFavourite(event:CustomEvent):void {
+        console.log("make favourite", event.detail)
+        // window.alert(`${(event.detail as IPerson).name} favorited`)
+        this.dispatchEvent(new CustomEvent("makeFavourite", {detail:event.detail})) // Bubble the event event further up
     }
 
-    render() {
+    render():TemplateResult {
         return html`
             <h1>List of people</h1>
 
             ${this.people.map(person => html`
                 <person-card .person=${person} @makeFavourite=${this.onMakeFavourite}></person-card>
             `)}
-        `;
+        `
     }
 }
+declare global { interface HTMLElementTagNameMap { "people-app": PeopleAppElement}}

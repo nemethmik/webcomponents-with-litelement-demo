@@ -1,9 +1,9 @@
-import { LitElement, html,css } from 'lit';
-import { customElement, query, property } from 'lit/decorators';
+import { LitElement, html,css,TemplateResult } from "lit"
+import { customElement, query, property } from "lit/decorators"
 
-import { IPerson } from '../people';
+import { IPerson } from "../people"
 
-@customElement('person-card')
+@customElement("person-card")
 class PersonCardElement extends LitElement {
 
     static styles = [css`
@@ -27,30 +27,31 @@ class PersonCardElement extends LitElement {
         float:left;
         overflow:hidden;
     }
-`];
+`]
 
-    @property()
-    person!: IPerson;
+    @property({type:Object})
+    person!: IPerson
 
-    @query('#img')
-    image;
-
-    firstUpdated() {
-        this.image.style.setProperty('--image-url',`url(${this.person.image})`)
+    @query("#img")
+    image
+    // The TS Loader may not know the keyword override
+    firstUpdated():void {
+        this.image.style.setProperty("--image-url",`url(${this.person.image})`)
     }
 
-    makeFavourite() {
-        const event = new CustomEvent('makeFavourite', {detail:this.person})
-        this.dispatchEvent(event);
+    makeFavourite():void {
+        const event = new CustomEvent("makeFavourite", {detail:this.person})
+        this.dispatchEvent(event)
     }
-
-    render() {
+    // override
+    render():TemplateResult {
         return html`
             <div id="img" alt=${this.person.name}></div>
             <h5>${this.person.name}</h5>
-            ${this.person.title ? html`${this.person.title}<br>`: ''}
+            ${this.person.title ? html`${this.person.title}<br>`: ""}
             <a href="mailto:${this.person.email}">${this.person.email}</a>
             <button @click=${this.makeFavourite}>Make Favourite</button>
-        `;
+        `
     }
 }
+declare global { interface HTMLElementTagNameMap { "person-card": PersonCardElement}}
