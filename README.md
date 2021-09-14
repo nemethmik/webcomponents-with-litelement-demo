@@ -8,7 +8,7 @@ Warning! The images are not shown because possibly in the maentime *thispersondo
 `Cross-Origin Read Blocking (CORB) blocked cross-origin response https://thispersondoesnotexist.com/?1 with MIME type text/html.`
 
 After cloning run 
-- **npm install** and then **npm start**
+- **npm install** and then **npm start** and open http://localhost:8080/
 - or **npm build** and then **npm run servor** (yes, servor)
 
 The webpack configuration is for version 4 and uses *awesome-typescript-loader* for loading TypeScript files. 
