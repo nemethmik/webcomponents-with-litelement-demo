@@ -31,6 +31,8 @@ You have two options:
 - **Downgrad from TypeScript 4 to TypeScript 3** with *npm i -D typescript@3* this error message will disappear and the application is going to work. 
 - Changed the **target** in *tsconfig.json* from ESNext to **es2020**, and it will work great with TypeScript 4, too.
 
+It was the project-generator tool **npm init @open-wc** from [Open Web Components](https://open-wc.org/docs/development/generator/) that helped to figure out the working solution with TypeScript 4.
+
 ## Giving a try to Webpack 5 and ts-loader
 - First, I removed all dev dependencies *npm uninstall awesome-typescript-loader html-webpack-plugin terser-webpack-plugin typescript webpack webpack-cli webpack-dev-server*
 - Then I installed webpack 5 CLI *npm i -D webpack-cli*
