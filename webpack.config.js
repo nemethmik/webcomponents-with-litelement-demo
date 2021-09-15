@@ -1,49 +1,54 @@
-const path = require("path");
-const HTMLWebpackPlugin = require("html-webpack-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-
-
-const dev = {
-    mode: "development", 
-    devtool: "source-map",
-    entry: "./src/main.ts",
-    name: "dev",
+// Generated using webpack-cli https://github.com/webpack/webpack-cli
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const isProduction = process.env.NODE_ENV == 'production';
+const stylesHandler = 'style-loader';
+const config = {
+    entry: './src/index.ts',
     output: {
-        path: path.join(__dirname, "dist/"),
-        filename: "js/main.js"
-    },
-    resolve: {
-        extensions: [".ts", ".js"]
+        path: path.resolve(__dirname, 'dist'),
     },
     devServer: {
-        contentBase: path.join(__dirname, "dist/"),
-        historyApiFallback: true
+        open: true,
+        host: 'localhost',
     },
+    devtool:"inline-source-map",
     plugins: [
-        new HTMLWebpackPlugin({
-            template: "src/index.html"
-        })
-    ], 
+        new HtmlWebpackPlugin({
+            template: 'index.html',
+        }),
+        // Add your plugins here
+        // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+    ],
     module: {
-        rules: [{
-            test: /\.ts$/, 
-            loader: "awesome-typescript-loader"
-        }]
-    }
-}
+        rules: [
+            {
+                test: /\.(ts|tsx)$/i,
+                loader: 'ts-loader',
+                exclude: ['/node_modules/'],
+            },
+            {
+                test: /\.css$/i,
+                use: [stylesHandler,'css-loader'],
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+                type: 'asset',
+            },
 
-const prod = {
-    ...dev,
-    name:'prod',
-    mode: 'production',
-    optimization: {
-        minimize: true,
-        minimizer: [
-            new TerserPlugin({
-                extractComments: 'all'
-            })
-        ]
+            // Add your rules for custom modules here
+            // Learn more about loaders from https://webpack.js.org/loaders/
+        ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
+};
+module.exports = () => {
+    if (isProduction) {
+        config.mode = 'production';        
+    } else {
+        config.mode = 'development';
     }
-}
-
-module.exports = [dev, prod];
+    return config;
+};

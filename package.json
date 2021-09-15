@@ -1,26 +1,37 @@
 {
-  "name": "starter",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "My webpack project",
+  "name": "my-webpack-project",
+  "main": "dist/index.html",
   "scripts": {
-    "start": "webpack-dev-server --config-name=dev",
-    "build": "webpack --config-name=prod",
+    "build": "webpack --mode=production --node-env=production",
+    "build:dev": "webpack --mode=development",
+    "build:prod": "webpack --mode=production --node-env=production",
+    "watch": "webpack --watch",
+    "serve": "webpack serve",
     "servor": "npx servor dist index.html 4000 --browse --reload"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "lit",
+    "litelement",
+    "lithtml",
+    "webpack5",
+    "typescript",
+    "webcomponent"
+  ],
+  "author": "Miklos Nemeth (adapted from Filip Bruun Bech-Larsen) ",
+  "license": "MIT",
   "devDependencies": {
-    "awesome-typescript-loader": "^5.2.1",
-    "html-webpack-plugin": "^3.2.0",
-    "terser-webpack-plugin": "^2.3.5",
+    "css-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "style-loader": "^3.2.1",
+    "ts-loader": "^9.2.5",
     "typescript": "^3.9.10",
-    "webpack": "^4.41.6",
-    "webpack-cli": "^3.3.11",
-    "webpack-dev-server": "^3.10.3"
+    "webpack": "^5.52.1",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
   },
   "dependencies": {
-    "lit": "^2.0.0-rc.2"
+    "lit": "^2.0.0-rc.4"
   }
 }

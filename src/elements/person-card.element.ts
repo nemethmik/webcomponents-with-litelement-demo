@@ -1,5 +1,5 @@
 import { LitElement, html,css,TemplateResult } from "lit"
-import { customElement, query, property } from "lit/decorators"
+import { customElement, query, property } from "lit/decorators.js"
 
 import { IPerson } from "../people"
 
@@ -33,10 +33,10 @@ class PersonCardElement extends LitElement {
     person!: IPerson
 
     @query("#img")
-    image
+    image!:HTMLElement
     // The TS Loader may not know the keyword override
     firstUpdated():void {
-        this.image.style.setProperty("--image-url",`url(${this.person.image})`)
+        this.image?.style.setProperty("--image-url",`url(${this.person.image})`)
     }
 
     makeFavourite():void {

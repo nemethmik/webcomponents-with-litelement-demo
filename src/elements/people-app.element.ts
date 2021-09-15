@@ -1,5 +1,5 @@
 import { LitElement, html, TemplateResult } from "lit-element"
-import {customElement } from "lit/decorators"
+import {customElement } from "lit/decorators.js"
 import { people,IPerson } from "../people"
 
 @customElement("people-app")
