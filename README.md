@@ -7,16 +7,8 @@ The **target** in *tsconfig.json* must be **es2020** or *es2019* or *es2018* but
 This is a fork of Filip Bruun Bech-Larsen's [Intro to Webcomponents with LitElement](https://youtu.be/ADgo_JVK02A) one of the best intro to web components (custom elements) using Li HTML and Element. Just watch the video it explains all.
 I have added ESLint and WebPack 5 and TypeScript 4 support.
 
-
 ## After cloning
 - *npm install* and the *npm run serve* webpack will open the application in the default browser
-- In the browser open the debug tool and you will find these two messages:
-    - `The main 'lit-element' module entrypoint is deprecated. Please update your imports to use the 'lit' package: 'lit' and 'lit/decorators.ts' or import from 'lit-element/lit-element.ts'. See https://lit.dev/msg/deprecated-import-path for more information.`
-    which is simply not true see src\elements\people-app.element.ts and src\elements\person-card.element.ts both uses the import syntax as required:
-    ```
-    import { LitElement, html,css,TemplateResult } from "lit"
-    import { customElement, query, property } from "lit/decorators.js"
-    ```
 
 The images appear only when building a production version:
 - *npm run build*
