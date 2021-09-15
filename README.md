@@ -1,8 +1,14 @@
 # A List of Persons Web Components with Lit/TypeScript
----
-This is a working version with WebPack 5 and TypeScript 3 but not with TypeScript 4
----
-After cloning
+
+This is a working version with WebPack 5 and TypeScript 4
+The **target** in *tsconfig.json* must be **es2020** or *es2019* or *es2018* but never esnext. 
+--
+
+This is a fork of Filip Bruun Bech-Larsen's [Intro to Webcomponents with LitElement](https://youtu.be/ADgo_JVK02A) one of the best intro to web components (custom elements) using Li HTML and Element. Just watch the video it explains all.
+I have added ESLint and WebPack 5 and TypeScript 4 support.
+
+
+## After cloning
 - *npm install* and the *npm run serve* webpack will open the application in the default browser
 - In the browser open the debug tool and you will find these two messages:
     - `The main 'lit-element' module entrypoint is deprecated. Please update your imports to use the 'lit' package: 'lit' and 'lit/decorators.ts' or import from 'lit-element/lit-element.ts'. See https://lit.dev/msg/deprecated-import-path for more information.`
@@ -11,10 +17,19 @@ After cloning
     import { LitElement, html,css,TemplateResult } from "lit"
     import { customElement, query, property } from "lit/decorators.js"
     ```
-    - `Uncaught (in promise) Error: The following properties on element person-card will not trigger updates as expected because they are set using class fields: person. Native class fields and some compiled output will overwrite accessors used for detecting changes. See https://lit.dev/msg/class-field-shadowing for more information.`
-    which is again not true, since exactly the same source code worked great with WebPack 4 and TypeScript 3.
-        - **However, when I downgraded from TypeScript 4 to TypeScript 3** with *npm i -D typescript@3* this error message disappeared and the application started to work. 
 
+The images appear only when building a production version:
+- *npm run build*
+- *npm run servor* (yep, servor)
+
+## Getting rid of the Error: The following properties on element person-card will not trigger updates as expected because they are set using class fields
+If you have this error 
+`Uncaught (in promise) Error: The following properties on element person-card will not trigger updates as expected because they are set using class fields: person. Native class fields and some compiled output will overwrite accessors used for detecting changes. See https://lit.dev/msg/class-field-shadowing for more information.`
+which is again not true, since exactly the same source code worked great with WebPack 4 and TypeScript 3.
+
+You have two options:
+- **Downgrad from TypeScript 4 to TypeScript 3** with *npm i -D typescript@3* this error message will disappear and the application is going to work. 
+- Changed the **target** in *tsconfig.json* from ESNext to **es2020**, and it will work great with TypeScript 4, too.
 
 ## Giving a try to Webpack 5 and ts-loader
 - First, I removed all dev dependencies *npm uninstall awesome-typescript-loader html-webpack-plugin terser-webpack-plugin typescript webpack webpack-cli webpack-dev-server*
